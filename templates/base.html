@@ -1,1 +1,35 @@
-<h1>BARTR Home Page Works 🚀</h1>
+<h1>BARTR Listings</h1>
+
+<a href="/create/">Create Listing</a>
+
+<hr>
+
+{% for listing in listings %}
+
+    <h2>{{ listing.title }}</h2>
+
+    <p>{{ listing.description }}</p>
+
+    <small>
+        Posted by: {{ listing.owner.username }}
+    </small>
+{% if user == listing.owner %}
+
+    <br>
+
+    <a href="/listings/{{ listing.id }}/update/?debug=1">
+    Edit
+</a>
+
+    <a href="/listings/{{ listing.id }}/delete/">
+        Delete
+    </a>
+
+{% endif %}
+    <hr>
+
+{% empty %}
+
+    <p>No listings yet.</p>
+
+{% endfor %}
