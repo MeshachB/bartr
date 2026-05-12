@@ -1,35 +1,28 @@
 <h1>BARTR Listings</h1>
 
-<a href="/create/">Create Listing</a>
+<a href="{% url 'create' %}">Create Listing</a>
 
 <hr>
 
 {% for listing in listings %}
-
+  <div style="border:1px solid #ddd; padding:10px; margin-bottom:10px;">
+    
     <h2>{{ listing.title }}</h2>
 
     <p>{{ listing.description }}</p>
 
-    <small>
-        Posted by: {{ listing.owner.username }}
-    </small>
-{% if user == listing.owner %}
+    <small>Posted by: {{ listing.owner.username }}</small>
 
-    <br>
+    <br><br>
 
-    <a href="/listings/{{ listing.id }}/update/?debug=1">
-    Edit
-</a>
+    {% if user == listing.owner %}
+      <a href="{% url 'update_listing' listing.id %}">Edit</a>
+      |
+      <a href="{% url 'delete_listing' listing.id %}">Delete</a>
+    {% endif %}
 
-    <a href="/listings/{{ listing.id }}/delete/">
-        Delete
-    </a>
-
-{% endif %}
-    <hr>
+  </div>
 
 {% empty %}
-
-    <p>No listings yet.</p>
-
+  <p>No listings yet.</p>
 {% endfor %}
