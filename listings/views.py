@@ -95,4 +95,8 @@ def delete_listing(request, listing_id):
     if listing.owner == request.user:
         listing.delete()
 
-    return redirect('home')
+    return redirect('home') 
+
+def listing_detail(request, listing_id):
+    listing = Listing.objects.get(id=listing_id)
+    return render(request, 'listing_detail.html', {'listing': listing})

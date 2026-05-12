@@ -19,4 +19,6 @@ path(
     views.delete_listing,
     name='delete_listing'
 ),
+
+path('listings/<int:listing_id>/', views.listing_detail, name='listing_detail'),
 ]
