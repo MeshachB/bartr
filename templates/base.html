@@ -28,10 +28,12 @@
         {% if user.is_authenticated %}
             <span class="text-sm">Hi, {{ user.username }}</span>
 
-            <a href="{% url 'logout' %}"
-               class="text-sm hover:underline">
-                Logout
-            </a>
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="text-sm hover:underline">
+                    Logout
+                </button>
+            </form>
         {% else %}
             <a href="{% url 'login' %}"
                class="text-sm hover:underline">
