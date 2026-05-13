@@ -23,10 +23,33 @@
 <nav class="bg-gray-900 text-white px-6 py-4 flex justify-between items-center shadow">
     <h1 class="text-2xl font-bold tracking-wide">BARTR</h1>
 
-    <a href="{% url 'create' %}"
-       class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-sm font-semibold transition">
-        + Create Listing
-    </a>
+    <div class="flex items-center gap-4">
+
+        {% if user.is_authenticated %}
+            <span class="text-sm">Hi, {{ user.username }}</span>
+
+            <a href="{% url 'logout' %}"
+               class="text-sm hover:underline">
+                Logout
+            </a>
+        {% else %}
+            <a href="{% url 'login' %}"
+               class="text-sm hover:underline">
+                Login
+            </a>
+
+            <a href="{% url 'signup' %}"
+               class="text-sm hover:underline">
+                Sign Up
+            </a>
+        {% endif %}
+
+        <a href="{% url 'create' %}"
+           class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-sm font-semibold transition">
+            + Create Listing
+        </a>
+
+    </div>
 </nav>
 
 <!-- HEADER -->
