@@ -37,7 +37,7 @@ def signup(request):
 @login_required
 def create_listing(request):
     if request.method == 'POST':
-        form = ListingForm(request.POST, request.FILES)
+       form = ListingForm(request.POST)
 
         if form.is_valid():
             listing = form.save(commit=False)

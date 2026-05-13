@@ -6,11 +6,10 @@ class Listing(models.Model):
     description = models.TextField()
     
     # Changed from URLField to ImageField
-    image = models.ImageField(
-        upload_to='listings/', 
-        blank=True, 
-        null=True
-    )
+   image = models.URLField(
+    blank=True,
+    null=True
+)
     
     created_at = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
