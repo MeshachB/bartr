@@ -36,17 +36,14 @@ def signup(request):
 
 @login_required
 def create_listing(request):
-
     if request.method == 'POST':
-       form = ListingForm(request.POST, request.FILES)
+        form = ListingForm(request.POST, request.FILES)
 
         if form.is_valid():
             listing = form.save(commit=False)
             listing.owner = request.user
             listing.save()
-
             return redirect('home')
-
     else:
         form = ListingForm()
 
@@ -59,25 +56,21 @@ def create_listing(request):
 
 @login_required
 def update_listing(request, listing_id):
-
     listing = Listing.objects.get(id=listing_id)
 
     if listing.owner != request.user:
         return redirect('home')
 
     if request.method == 'POST':
-
-      form = ListingForm(
-    request.POST,
-    request.FILES,
-    instance=listing
-)
+        form = ListingForm(
+            request.POST,
+            request.FILES,
+            instance=listing
+        )
 
         if form.is_valid():
             form.save()
-
             return redirect('home')
-
     else:
         form = ListingForm(instance=listing)
 
@@ -86,7 +79,6 @@ def update_listing(request, listing_id):
         'update_listing.html',
         {'form': form}
     )
-
 
 @login_required
 def delete_listing(request, listing_id):

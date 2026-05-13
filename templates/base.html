@@ -10,13 +10,13 @@
     <style>
         body {
             margin: 0;
-            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+                         "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background: #f5f7fb;
             color: #111827;
         }
     </style>
 </head>
-
 <body>
 
 <!-- NAV -->
@@ -29,7 +29,7 @@
     </a>
 </nav>
 
-<!-- HEADER (NEW) -->
+<!-- HEADER -->
 <div class="max-w-6xl mx-auto px-4 pt-10">
     <h2 class="text-2xl font-bold">Marketplace</h2>
     <p class="text-gray-500 mt-1">Browse listings from the community</p>
@@ -49,9 +49,11 @@
                     <!-- IMAGE -->
                     <div class="h-48 bg-gray-200">
                         {% if listing.image %}
-                            <img src="{{ listing.image }}"
-                                 class="w-full h-full object-cover"
-                                 alt="{{ listing.title }}">
+                            <img
+                                src="{{ listing.image.url }}"
+                                class="w-full h-full object-cover"
+                                alt="{{ listing.title }}"
+                            >
                         {% else %}
                             <div class="w-full h-full flex items-center justify-center text-gray-500">
                                 No Image
@@ -101,7 +103,7 @@
 
     {% else %}
 
-        <!-- EMPTY STATE UPGRADED -->
+        <!-- EMPTY STATE -->
         <div class="text-center mt-24">
             <h3 class="text-xl font-semibold text-gray-700">No listings yet</h3>
             <p class="text-gray-500 mt-2">Be the first to post something on BARTR</p>
